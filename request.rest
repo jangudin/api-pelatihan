@@ -1,0 +1,236 @@
+###login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "id": "3206171907990001",
+  "password": "Whydin"
+}
+
+### Logout
+POST http://localhost:5000/api/auth/logout
+
+
+// Api Menu 
+###
+GET http://localhost:5000/api/menu/MN-1
+
+###dd_menu
+POST http://localhost:5000/api/menu/
+Content-Type: application/json
+
+{
+  "nama": "Tes3",
+  "deskripsi":"-"
+}
+
+###edit_menu
+PUT http://localhost:5000/api/menu/MN-1
+Content-Type: application/json
+
+{
+  "nama": "Admin Sistem"
+}
+
+### dell_menu
+DELETE http://localhost:5000/api/menu/MN-1
+
+
+
+
+
+/// Api Otoritas
+###
+GET http://localhost:5000/api/otoritas/
+
+###
+GET http://localhost:5000/api/otoritas/OT-3
+
+###add_otoritas
+POST http://localhost:5000/api/otoritas/
+Content-Type: application/json
+
+{
+  "nama": "hallooooooo"
+}
+
+###edit_otoritas
+PUT http://localhost:5000/api/otoritas/OT-3
+Content-Type: application/json
+
+{
+  "nama": "HIIIIII"
+}
+
+### dell_otoritas
+DELETE http://localhost:5000/api/otoritas/OT-3
+
+
+
+
+/// Api Tim Kerja
+###
+GET http://localhost:5000/api/timkerja/
+
+###
+GET http://localhost:5000/api/timkerja/TK-2
+
+
+###add_tim
+POST http://localhost:5000/api/timkerja/
+Content-Type: application/json
+
+{
+  "nama": "Adum"
+}
+
+###edit_tim
+PUT http://localhost:5000/api/timkerja/edit/TK1
+Content-Type: application/json
+
+{
+  "nama": "Keprimkom"
+}
+
+### dell_tim
+DELETE http://localhost:5000/api/timkerja/delete/TK1
+
+
+
+
+/// Api Jenis Pelatihan
+###
+GET http://localhost:5000/api/JenisPelatihan/
+
+###
+GET http://localhost:5000/api/JenisPelatihan/TK1
+
+###dd_JenisPelatihan
+POST http://localhost:5000/api/JenisPelatihan/
+Content-Type: application/json
+
+{
+  "nama_jenis": "Tes3",
+  "deskripsi":"-"
+}
+
+###edit_JenisPelatihan
+PUT http://localhost:5000/api/JenisPelatihan/TK1
+Content-Type: application/json
+
+{
+  "nama": "Keprimkom"
+}
+
+### dell_JenisPelatihan
+DELETE http://localhost:5000/api/JenisPelatihan/JP-1
+
+
+
+
+/// Api Lembaga Pelaksana
+###
+GET http://localhost:5000/api/LembagaPelaksana/
+
+###
+GET http://localhost:5000/api/LembagaPelaksana/TK1
+
+###dd_LP
+POST http://localhost:5000/api/LembagaPelaksana/
+Content-Type: application/json
+
+{
+  "nama": "Tes3",
+  "keterangan":"-"
+}
+
+###edit_LP
+PUT http://localhost:5000/api/LembagaPelaksana/TK1
+Content-Type: application/json
+
+{
+  "nama": "Keprimkom"
+}
+
+### dell_LP
+DELETE http://localhost:5000/api/JenisPelatihan/JP-1
+
+
+
+
+/// Api Otoritas Menu
+###
+GET http://localhost:5000/api/OtoritasMenu/
+
+###
+GET http://localhost:5000/api/OtoritasMenu/OM-2
+
+###dd_LP
+POST http://localhost:5000/api/OtoritasMenu/
+Content-Type: application/json
+
+{
+  "otoritas_id": "OT-3",
+  "menu_id":"MN-1"
+}
+
+###edit_LP
+PUT http://localhost:5000/api/OtoritasMenu/OM-6
+Content-Type: application/json
+
+{
+  "otoritas_id": "OT-4",
+  "menu_id":"MN-1"
+}
+
+### dell_LP
+DELETE http://localhost:5000/api/OtoritasMenu/OM-6
+
+
+
+
+/// Api Pelatihan
+###
+GET http://localhost:5000/api/pelatihan/
+
+###
+GET http://localhost:5000/api/pelatihan/PL-4?timkerja_id=TM-1
+
+###dd_LP
+POST http://localhost:5000/api/pelatihan/
+Content-Type: application/json
+
+{
+      "pegawai_id": "3206171907990001",
+      "nama": "Wahyudin",
+      "jenis_pelatihan_id": "JP-1",
+      "lembaga_pelatihan_id": "LP-1",
+      "periode_triwulan": "III",
+      "no_sertifikat": "12345/xx123",
+      "jumlah_jpl": 10,
+      "tanggal_sertifikat": "2022-04-30",
+      "link_data_dukung": "admin.domain"
+}
+
+###edit_LP
+PUT http://localhost:5000/api/pelatihan/PL-4
+Content-Type: application/json
+
+{
+      "pegawai_id": "3206171907990001",
+      "nama": "Pelatihan S*iber",
+      "jenis_pelatihan_id": "JP-1",
+      "lembaga_pelatihan_id": "LP-1",
+      "periode_triwulan": "III",
+      "no_sertifikat": "12345/898989",
+      "jumlah_jpl": 15,
+      "tanggal_sertifikat": "2022-04-02",
+      "link_data_dukung": "aww.com"
+}
+
+### dell_LP
+DELETE http://localhost:5000/api/pelatihan/OM-6
+
+
+
+

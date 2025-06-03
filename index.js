@@ -2,27 +2,28 @@ const express = require('express');
 const dotenv = require('dotenv');
 const session = require('express-session');
 const cors = require('cors');
-const app = express();
 
+// Load environment variables
 dotenv.config();
 
-// 💡 CORS harus disetting agar credentials (session cookie) bisa ikut
+const app = express();
+
+// CORS configuration
 app.use(cors({
-  origin: 'http://localhost:3000', // Sesuaikan dengan asal React-mu
-  credentials: true                // Penting: supaya session bisa berjalan
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
 }));
 
+// Middleware
 app.use(express.json());
-
-// 🔐 Konfigurasi session
 app.use(session({
-  secret: 'rahasia-anda',  // Ganti dengan secret yang kuat
+  secret: process.env.SESSION_SECRET || 'your-strong-secret-key',
   resave: false,
-  saveUninitialized: false, // Lebih aman: jangan buat session kalau belum ada login
+  saveUninitialized: false,
   cookie: {
-    secure: false, // true kalau pakai HTTPS
-    httpOnly: true, // mencegah akses cookie dari JavaScript
-    maxAge: 1000 * 60 * 60 // 1 jam
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 // 1 hour
   }
 }));
 
@@ -31,22 +32,33 @@ const authRoutes = require('./routes/auth');
 const otoritasRoutes = require('./routes/otoritas');
 const timKerjaRoutes = require('./routes/timkerja');
 const menuRoutes = require('./routes/menu');
-const JenisPelatihanRoutes = require('./routes/jenispelatihan');
-const LembagaPelaksanaRoutes = require('./routes/lembagapelaksana');
-const OtoritasMenuRoutes = require('./routes/otoritasmenu');
+const jenisPelatihanRoutes = require('./routes/jenispelatihan');
+const lembagaPelaksanaRoutes = require('./routes/lembagapelaksana');
+const otoritasMenuRoutes = require('./routes/otoritasmenu');
 const pelatihanRoutes = require('./routes/pelatihan');
 
+// Register routes
 app.use('/api/auth', authRoutes);
 app.use('/api/otoritas', otoritasRoutes);
 app.use('/api/timkerja', timKerjaRoutes);
 app.use('/api/menu', menuRoutes);
-app.use('/api/JenisPelatihan', JenisPelatihanRoutes);
-app.use('/api/LembagaPelaksana', LembagaPelaksanaRoutes);
-app.use('/api/OtoritasMenu', OtoritasMenuRoutes);
+app.use('/api/jenis-pelatihan', jenisPelatihanRoutes);
+app.use('/api/lembaga-pelaksana', lembagaPelaksanaRoutes);
+app.use('/api/otoritas-menu', otoritasMenuRoutes);
 app.use('/api/pelatihan', pelatihanRoutes);
 
-// Mulai server
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    status: 'error',
+    message: 'Terjadi kesalahan pada server',
+    code: 500
+  });
+});
+
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server berjalan di port ${PORT}`);
 });

@@ -7,6 +7,36 @@ Content-Type: application/json
   "password": "Whydin"
 }
 
+### Get Current User with Jabatan and Tim Kerja
+GET http://localhost:5000/api/auth/me
+Authorization: Bearer {{login.response.body.data.token}}
+
+### Add Pegawai with Jabatan and Tim Kerja
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "id": "3206171907990002",
+  "nama": "Test User",
+  "email": "test@example.com",
+  "password": "password123",
+  "jabatan_id": "JB-1",
+  "tim_kerja_id": "TK-1",
+  "status": "active"
+}
+
+### Update Pegawai with Jabatan and Tim Kerja
+PUT http://localhost:5000/api/auth/update/3206171907990001
+Content-Type: application/json
+
+{
+  "nama": "Updated Name",
+  "email": "updated@example.com",
+  "jabatan_id": "JB-2",
+  "tim_kerja_id": "TK-2",
+  "status": "active"
+}
+
 ### Logout
 POST http://localhost:5000/api/auth/logout
 
